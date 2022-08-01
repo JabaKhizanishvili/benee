@@ -87,10 +87,10 @@
 
                                             <div class="form-group">
                                                 <label class="form-label">@lang('admin.duration')</label>
-                                                <input type="text" name="{{$locale.'[duration]'}}" class="form-control" placeholder="@lang('admin.duration')" value="{{$portfolio->translate($locale)->duration ?? ''}}">
+                                                <input type="text" name="{{$locale.'[durations]'}}" class="form-control" placeholder="@lang('admin.durations')" value="{{$portfolio->translate($locale)->durations ?? ''}}">
 
                                             </div>
-                                            @error($locale.'.duration')
+                                            @error($locale.'.durations')
                                             <small class="text-danger">
                                                 <div class="error">
                                                     {{$message}}
@@ -107,7 +107,7 @@
                                                     {{-- <option value={{$cat->id}}>{{$cat->name}}</option>
                                                     {{old('cat_id') ==  $cat->id   ?   "selected":""}} value="{{$cat->translate($locale)->brand}}"> {{$cat->name}}</option> --}}
 
-                                                    <option{{old('category_id') ==  $cat->id   ?   "selected":""}} value="{{$cat->id}}">{{$cat->name}}</option>
+                                                    <option{{old('category_id') ==  $cat->id   ?   "selected":""}}  value="{{$cat->id}}" >{{$cat->name}}</option>
 
                                                     @endforeach
                                                 </select>
