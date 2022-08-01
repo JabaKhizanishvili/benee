@@ -3177,7 +3177,69 @@ var About = function About(_ref) {
   var seo = _ref.seo,
       partners = _ref.partners,
       team = _ref.team;
-  console.log(team);
+
+  var renderHTML = function renderHTML(rawHTML) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+      dangerouslySetInnerHTML: {
+        __html: rawHTML
+      }
+    });
+  };
+
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props.localizations;
+
+  var links = function links(_links) {
+    var rows = []; //links.shift();
+    //links.splice(-1);
+
+    {
+      _links.map(function (item, index) {
+        if (index > 0 && index < _links.length - 1) {
+          rows.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+            href: item.url,
+            className: item.active ? "text-custom-pink-500 mx-3 p-2 text-3xl" : " mx-5 text-3xl"
+          }, item.label));
+        }
+      });
+    }
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+      className: "nums"
+    }, " ", rows.length > 1 ? rows : null, " ");
+  };
+
+  var linksPrev = function linksPrev(links) {
+    var rowCount = 0;
+    links.map(function (item, index) {
+      if (index > 0 && index < links.length - 1) {
+        rowCount++;
+      }
+    });
+    return rowCount > 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+      href: links[0].url
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+      className: "arrow",
+      style: {
+        transform: "rotate(-90deg)"
+      }
+    })) : null;
+  };
+
+  var linksNext = function linksNext(links) {
+    var rowCount = 0;
+    links.map(function (item, index) {
+      if (index > 0 && index < links.length - 1) {
+        rowCount++;
+      }
+    });
+    return rowCount > 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+      href: links[links.length - 1].url
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+      className: "arrow",
+      style: {
+        transform: "rotate(90deg)"
+      }
+    })) : null;
+  };
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3277,7 +3339,7 @@ var About = function About(_ref) {
     className: "text-3xl mb-10"
   }, "Meet our team"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: "grid md:grid-cols-3 sm:grid-cols-2 gap-10 mb-20"
-  }, team.map(function (item, index) {
+  }, team.data.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
       "data-aos": "flip-left",
       "data-aos-duration": "5000",
@@ -3295,14 +3357,10 @@ var About = function About(_ref) {
       className: "regular"
     }, item.position));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
-    className: "wrapper flex items-center justify-center pb-20"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
-    className: "text-custom-pink-500 mx-3 p-2 text-3xl"
-  }, "1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
-    className: " mx-5 text-3xl"
-  }, "2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
-    className: " mx-5 text-3xl"
-  }, "3")))));
+    className: "wrapper flex items-center justify-center pt-20"
+  }, linksPrev(team.links), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("button", {
+    className: ""
+  }, links(team.links)), linksNext(team.links)))));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (About);

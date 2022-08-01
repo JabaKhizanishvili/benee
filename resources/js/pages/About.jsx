@@ -11,7 +11,63 @@ import Layout from "../Layouts/Layout";
 
 const About = ({ seo, partners, team }) => {
 
-    console.log(team);
+    const renderHTML = (rawHTML) => React.createElement("div", { dangerouslySetInnerHTML: { __html: rawHTML } });
+    const sharedData = usePage().props.localizations;
+
+    let links = function (links) {
+        let rows = [];
+        //links.shift();
+        //links.splice(-1);
+        {
+            links.map(function (item, index) {
+                if (index > 0 && index < links.length - 1) {
+                    rows.push(
+                        <Link
+                            href={item.url}
+                            className={item.active ? "text-custom-pink-500 mx-3 p-2 text-3xl" : " mx-5 text-3xl"}
+                        >
+                            {item.label}
+                        </Link>
+                    );
+                }
+            });
+        }
+        return <div className="nums"> {rows.length > 1 ? rows : null} </div>;
+    };
+
+    let linksPrev = function (links) {
+        let rowCount = 0;
+        links.map(function (item, index) {
+            if (index > 0 && index < links.length - 1) {
+                rowCount++;
+            }
+        });
+        return rowCount > 1 ? (
+            <Link href={links[0].url}>
+                {/* <Arrow color="#2F3E51" rotate="90" /> */}
+                <button className="arrow" style={{ transform: "rotate(-90deg)" }}>
+                </button>
+                {/* <Arrow color="#2F3E51" rotate="90" /> */}
+
+            </Link>
+        ) : null;
+    };
+    let linksNext = function (links) {
+        let rowCount = 0;
+        links.map(function (item, index) {
+            if (index > 0 && index < links.length - 1) {
+                rowCount++;
+            }
+        });
+        return rowCount > 1 ? (
+            <Link href={links[links.length - 1].url}>
+                {/* <Arrow color="#2F3E51" rotate="-90" /> */}
+                {/* <Arrow color="#2F3E51" rotate="-90" /> */}
+                <button className="arrow" style={{ transform: "rotate(90deg)" }}>
+                </button>
+            </Link>
+        ) : null;
+    };
 
     const [activeLink, setActiveLink] = useState(0);
     return (
@@ -141,7 +197,7 @@ const About = ({ seo, partners, team }) => {
                 <section className="wrapper ">
                     <div className="text-3xl mb-10">Meet our team</div>
                     <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-10 mb-20">
-                        {team.map((item, index) => {
+                        {team.data.map((item, index) => {
                             return (
                                 <div
                                     data-aos="flip-left"
@@ -171,10 +227,16 @@ const About = ({ seo, partners, team }) => {
                             );
                         })}
                     </div>
-                    <div className="wrapper flex items-center justify-center pb-20">
+                    {/* <div className="wrapper flex items-center justify-center pb-20">
                         <button className="text-custom-pink-500 mx-3 p-2 text-3xl">1</button>
                         <button className=" mx-5 text-3xl">2</button>
                         <button className=" mx-5 text-3xl">3</button>
+                    </div> */}
+
+                    <div className="wrapper flex items-center justify-center pt-20">
+                        {linksPrev(team.links)}
+                        <button className="">{links(team.links)}</button>
+                        {linksNext(team.links)}
                     </div>
                 </section>
             </>

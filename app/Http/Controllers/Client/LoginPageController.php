@@ -160,7 +160,7 @@ class LoginPageController extends Controller
 
         return Inertia::render('About', [
             "partners" => Staff::with('latestImage')->get(),
-            "team" => Team::with('latestImage')->get(),
+            "team" => Team::with('latestImage')->paginate(9),
             'success' => $request->session()->get('success'),
             "sliders" => $sliders->get(), "page" => $page, "seo" => [
                 "title" => $page->meta_title,
