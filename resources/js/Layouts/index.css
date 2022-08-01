@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "neue";
+    src: url("/assets/fonts/NeueMachina-Regular.ttf");
+}
+
+@font-face {
+    font-family: "neue-bold";
+    src: url("/assets/fonts/NeueMachina-Bold.ttf");
+}
+
+/* GENERAL */
+
+*,
+*::before,
+*::after {
+    scroll-behavior: smooth;
+    font-family: "neue-bold";
+}
+
+::selection {
+    background: white;
+    color: black;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e9776d;
+    border-radius: 2px;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: "neue-bold";
+}
+
+.wrapper {
+    width: 1640px;
+    margin: auto;
+}
+
+.projectWrapper {
+    width: 1360px;
+    margin: auto;
+}
+
+@media screen and (max-width: 1700px) {
+    .wrapper {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .projectWrapper {
+        width: 90%;
+    }
+}
+
+.regular {
+    font-family: "neue";
+}
+
+.fillup {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.7s;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .fillup,
+    .fillup:hover {
+        height: auto !important;
+    }
+}
+
+.fillup span {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    background-image: linear-gradient(to top, #fff, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    background-size: 100% 0%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    transition: background-size 0.7s;
+}
+
+.fillup:hover span {
+    background-size: 100% 100%;
+}
+
+#container {
+    perspective: 25px;
+}
+
+/* NAVBAR */
+
+.menuButton.close div:nth-child(3) {
+    transform: rotate(-135deg) translateY(2px) translateX(1px);
+}
+
+.menuButton.close div:nth-child(2) {
+    transform: rotate(-45deg) translateY(-12px) translateX(4px) scaleX(1);
+}
+
+.menuButton.close div:nth-child(1) {
+    transform: scaleX(0) !important;
+}
+
+/*  PERSPECTIVE */
+
+.perspectiveImage {
+    width: 120%;
+    height: 120%;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+
+.perspectiveImage.reverse {
+    top: auto;
+    bottom: 0;
+    left: auto;
+    right: 0;
+}
+
+.perspectiveImage::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.616), transparent);
+}
+
+@media screen and (max-width: 1040px) {
+    .perspectiveImageContainer {
+        height: 400px !important;
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .perspectiveImageContainer {
+        height: 240px !important;
+    }
+}
+
+/* map */
+.overlay {
+    height: 90vh;
+}
+
+.overlay::before,
+.overlay::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    width: 100%;
+    height: 360px;
+    z-index: 30;
+}
+
+.overlay::after {
+    top: 0;
+    background: linear-gradient(to bottom, #000, transparent);
+}
+
+.overlay::before {
+    bottom: 0;
+    background: linear-gradient(to top, #000, transparent);
+}
+
+.right-shadow {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 900px;
+    background: linear-gradient(to left, #000, #000, transparent);
+}
+
+@media screen and (max-width: 1024px) {
+    .overlay {
+        height: auto;
+    }
+
+    .right-shadow {
+        top: 300px;
+        height: 110px;
+        width: 100%;
+        background: linear-gradient(to top, #000, #000, transparent);
+    }
+}
