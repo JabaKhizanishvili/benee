@@ -62,7 +62,7 @@
                                     </th> --}}
                                     <th>
                                         <input class="form-control" type="text" name="title" onchange="this.form.submit()"
-                                               value="{{Request::get('costumer')}}"
+                                               value="{{Request::get('title')}}"
                                                class="validate {{$errors->has('title') ? '' : 'valid'}}">
                                     </th>
                                     <th></th>
@@ -98,7 +98,7 @@
 
                                                             @foreach(config('translatable.locales') as $locale)
                                                                 <div class="tab-pane {{$loop->first?"active":""}}" id="cat-{{$locale}}-{{$item->id}}">
-                                                                    {{$item->translate($locale)->name ?? ''}}
+                                                                    {{$item->translate($locale)->costumer ?? ''}}
                                                                 </div>
                                                             @endforeach
 
