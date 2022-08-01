@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\ServiceController;
 use App\Http\Controllers\Admin\IronController1;
 use App\Http\Controllers\Client\IronController;
+use App\Http\Controllers\Client\PortfolioController;
 use App\Http\Controllers\Client\DocumentationController;
 use App\Http\Controllers\Client\OurTeamController;
 use App\Http\Controllers\Client\LoginPageController;
@@ -133,14 +134,6 @@ Route::prefix('{locale?}')
             // Home Page
             Route::get('', [HomeController::class, 'index'])->name('client.home.index')->withoutMiddleware('active');
 
-
-            Route::get('/register', [LoginPageController::class, 'Register'])->name('client.register');
-            Route::post('/registeruser', [App\Http\Controllers\Auth\AuthFrontendCostumController::class, 'register'])->name('register');
-
-            Route::middleware('customer:customer')->group(function () {
-                Route::get('/cabinet', [\App\Http\Controllers\Client\CabinetController::class, 'index'])->name('client.cabinet');
-            });
-
             // Contact Page
             Route::get('/contact', [ContactController::class, 'index'])->name('client.contact.index');
             // Route::post('/contact-us', [ContactController::class, 'mail'])->name('client.contact.mail');
@@ -152,15 +145,16 @@ Route::prefix('{locale?}')
             // partners page
             Route::get('partners', [LoginPageController::class, 'partners'])->name('client.partners.index');
 
-            //singleproduct
-            Route::get('singleproduct', [TilesController::class, 'singleproduct'])->name('client.singleproduct.index');
-            Route::get('/singleproduct/{singleproduct}', [\App\Http\Controllers\Client\TilesController::class, 'show'])->name('client.singleproduct.show')->withoutMiddleware('active');
-
-
 
             //news
             Route::get('/news', [\App\Http\Controllers\Client\NewsController::class, 'index'])->name('client.news.index');
             Route::get('/news/{news}', [\App\Http\Controllers\Client\NewsController::class, 'show'])->name('client.news.show');
+
+
+            //portfolio
+            Route::get('/projects', [\App\Http\Controllers\PortfolioController::class, 'index'])->name('client.project.index');
+            // Route::get('/projects/{projects}', [\App\Http\Controllers\Client\NewsController::class, 'singleproject'])->name('client.news.show');
+
 
             //search
 

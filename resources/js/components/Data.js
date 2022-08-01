@@ -66,7 +66,7 @@ export const navigations = [
         text: "About us",
     },
     {
-        link: "/portfolio",
+        link: route("client.project.index"),
         text: "Portfolio",
     },
     {

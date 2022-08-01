@@ -38,6 +38,7 @@ const Navbar = () => {
 
     const [indexHovered, setIndexHovered] = useState(0);
 
+
     return (
         <>
             {/* menu */}
@@ -51,18 +52,16 @@ const Navbar = () => {
                             <div className="flex items-center mb-6">
 
                                 <div className="selected mr-3 text-xl regular">{currentLocale}</div>
-                                <a href="#" className="opacity-50 regular text-sm pt-1">
-                                    {currentLocale == "ge" ? (
-                                        <Link href={locale_urls["English"]}>
-                                            {"en"}
+                                {currentLocale == "ge" ? (
+                                    <Link href={locale_urls["English"]}>
+                                        {"en"}
 
-                                        </Link>
-                                    ) : (
-                                        <Link href={locale_urls["ქართული"]}>
-                                            {"ge"}
-                                        </Link>
-                                    )}
-                                </a>
+                                    </Link>
+                                ) : (
+                                    <Link href={locale_urls["ქართული"]}>
+                                        {"ge"}
+                                    </Link>
+                                )}
                             </div>
                             {navigations.map((nav, index) => {
                                 return (

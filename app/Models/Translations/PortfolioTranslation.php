@@ -14,6 +14,7 @@ class PortfolioTranslation extends BaseTranslationModel
     //     'position',
     // ];
     protected $fillable = [
+        'name',
         'costumer',
         'durations',
         'about_project',
@@ -21,6 +22,5 @@ class PortfolioTranslation extends BaseTranslationModel
         'design',
         'animation',
         'music',
-        // 'position'
     ];
 }

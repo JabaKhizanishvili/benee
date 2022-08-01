@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <div
             className="wrapper py-10 text-center "
-            style={{ display: pathname === "/contact" && "none" }}
+            style={{ display: pathname === route("client.contact.index") && "none" }}
         >
             <Link href="/">
                 <img src={'/assets/images/logo/1.png'} alt="" className="mx-auto mb-10" />

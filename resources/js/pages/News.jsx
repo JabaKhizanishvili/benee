@@ -124,6 +124,7 @@ const News = ({ seo, news }) => {
                             className="  h-full lg:w-1/2"
                         >
                             {news.data.map((img, index) => {
+                                console.log(img.latest_image);
                                 return (
                                     <MouseParallaxChild
                                         factorX={-0.05}

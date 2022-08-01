@@ -30,6 +30,9 @@ class PageSeeder extends Seeder
                 'key' => 'news'
             ],
             [
+                'key' => 'projects'
+            ],
+            [
                 'key' => 'singleproduct'
             ],
         ];

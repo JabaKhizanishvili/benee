@@ -72,12 +72,26 @@
                                         if($loop->first) $active = 'active';
                                         ?>
                                         <div class="tab-pane {{$active}}" id="lang-{{$locale}}">
+
                                             <div class="form-group">
                                                 <label class="form-label">@lang('admin.costumer')</label>
                                                 <input type="text" name="{{$locale.'[costumer]'}}" class="form-control" placeholder="@lang('admin.costumer')" value="{{$portfolio->translate($locale)->costumer ?? ''}}">
 
                                             </div>
                                             @error($locale.'.costumer')
+                                            <small class="text-danger">
+                                                <div class="error">
+                                                    {{$message}}
+                                                </div>
+                                            </small>
+                                            @enderror
+
+                                            <div class="form-group">
+                                                <label class="form-label">@lang('admin.name')</label>
+                                                <input type="text" name="{{$locale.'[name]'}}" class="form-control" placeholder="@lang('admin.name')" value="{{$portfolio->translate($locale)->name ?? ''}}">
+
+                                            </div>
+                                            @error($locale.'.name')
                                             <small class="text-danger">
                                                 <div class="error">
                                                     {{$message}}
@@ -135,19 +149,6 @@
                                             @enderror
 
                                             <div class="form-group">
-                                                <label class="form-label">@lang('admin.video_url')</label>
-                                                <input type="text" name="video_url" class="form-control" placeholder="@lang('admin.video_url')" value="{{$portfolio->video_url ?? ''}}">
-
-                                            </div>
-                                            {{-- @error($locale.'.video_url')
-                                            <small class="text-danger">
-                                                <div class="error">
-                                                    {{$message}}
-                                                </div>
-                                            </small>
-                                            @enderror --}}
-
-                                            <div class="form-group">
                                                 <label class="form-label">@lang('admin.direction')</label>
                                                 <input type="text" name="{{$locale.'[direction]'}}" class="form-control" placeholder="@lang('admin.direction')" value="{{$portfolio->translate($locale)->direction ?? ''}}">
 
@@ -202,6 +203,18 @@
                                         </div>
 
                                     @endforeach
+                                    <div class="form-group">
+                                        <label class="form-label">@lang('admin.video_url')</label>
+                                        <input type="text" name={{'video_url'}} class="form-control" placeholder="@lang('admin.video_url')" value="{{$portfolio->video_url ?? ''}}">
+
+                                    </div>
+                                    @error($locale.'.video_url')
+                                    <small class="text-danger">
+                                        <div class="error">
+                                            {{$message}}
+                                        </div>
+                                    </small>
+                                    @enderror
 
                                 </div>
                             </div>

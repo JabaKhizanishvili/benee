@@ -25,11 +25,13 @@ class CreatePortfolioTranslationsTable extends Migration
             $table->bigInteger('portfolio_id')->unsigned();
             $table->string('locale')->index();
 
+            $table->string('name')->nullable();
             $table->string('costumer')->nullable();
             $table->string('durations')->nullable();
             $table->string('about_project')->nullable();
             $table->string('direction')->nullable();
             $table->string('design')->nullable();
+            // $table->string('video_url')->nullable();
             $table->string('animation')->nullable();
             $table->string('music')->nullable();
             // $table->string('position')->nullable();

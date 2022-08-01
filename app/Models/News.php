@@ -139,4 +139,8 @@ class News extends Model implements Searchable
     {
         return $this->morphOne(File::class, 'fileable');
     }
+    public function latestImage()
+    {
+        return $this->morphOne(File::class, 'fileable')->latestOfMany();
+    }
 }
