@@ -16,7 +16,18 @@ import { navigations, socialMedia } from "./Data";
 // import img9 from "../assets/images/navbar/9.png";
 
 const Navbar = () => {
-    const { pathname } = usePage().props;
+    const {
+        errors,
+        gphone,
+        gemail,
+        gaddress,
+        locales,
+        currentLocale,
+        locale_urls,
+        pathname
+    } = usePage().props;
+
+    // const { pathname } = usePage().props;
 
     const [showMenu, setShowMenu] = useState(false);
 
@@ -38,9 +49,19 @@ const Navbar = () => {
                     <div className=" h-full max-w-7xl mx-auto flex items-center justify-between">
                         <div className="relative z-10">
                             <div className="flex items-center mb-6">
-                                <div className="selected mr-3 text-xl regular">Eng</div>
+
+                                <div className="selected mr-3 text-xl regular">{currentLocale}</div>
                                 <a href="#" className="opacity-50 regular text-sm pt-1">
-                                    Geo
+                                    {currentLocale == "ge" ? (
+                                        <Link href={locale_urls["English"]}>
+                                            {"en"}
+
+                                        </Link>
+                                    ) : (
+                                        <Link href={locale_urls["ქართული"]}>
+                                            {"ge"}
+                                        </Link>
+                                    )}
                                 </a>
                             </div>
                             {navigations.map((nav, index) => {

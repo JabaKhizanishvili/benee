@@ -17,41 +17,32 @@ class CategorySeeder extends Seeder
         //
         // categorytranslations
         $Category = [
+
             [
-                "slug" => "filebi",
-                "ge" => ["name" => "გრანიტი"],
-                "en" => ["name" => "tiles"],
+                "slug" => "brand",
+                "ge" => ["name" => "BRAND PLATFORM & IDENTITY DESIGN"],
+                "en" => ["name" => "BRAND PLATFORM & IDENTITY DESIGN"],
             ],
             [
-                "slug" => "kafeli",
-                "ge" => ["name" => "კაფელი"],
-                "en" => ["name" => "kafeli"],
+                "slug" => "creative",
+                "ge" => ["name" => "CREATIVE"],
+                "en" => ["name" => "CREATIVE"],
             ],
             [
-                "slug" => "metlaxi",
-                "ge" => ["name" => "მეტლახი"],
-                "en" => ["name" => "metlaxi"],
+                "slug" => "video",
+                "ge" => ["name" => "VIDEO & GRAPHIC PRODUCTIONVIDEO & GRAPHIC PRODUCTION"],
+                "en" => ["name" => "VIDEO & GRAPHIC PRODUCTIONVIDEO & GRAPHIC PRODUCTION"],
             ],
             [
-                "slug" => "laminati",
-                "ge" => ["name" => "ლამინატი"],
-                "en" => ["name" => "laminati"],
+                "slug" => "socmedia",
+                "ge" => ["name" => "სოციალური მედია"],
+                "en" => ["name" => "SOCIAL MEDIA"],
             ],
             [
-                "slug" => "ironDoors",
-                "ge" => ["name" => "რკინის კარი"],
-                "en" => ["name" => "iron doors"],
-            ],
-            [
-                "slug" => "woodDoors",
-                "ge" => ["name" => "ხის კარი"],
-                "en" => ["name" => "Wood doors"],
-            ],
-            [
-                "slug" => "bathroom",
-                "ge" => ["name" => "აბაზანის ავეჯი"],
-                "en" => ["name" => "Bathroom"],
-            ],
+                "slug" => "art",
+                "ge" => ["name" => "ART DIRECTION"],
+                "en" => ["name" => "ART DIRECTION"],
+            ]
         ];
 
         // // Insert Languages

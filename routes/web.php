@@ -74,6 +74,11 @@ Route::prefix('{locale?}')
                 Route::resource('staff', \App\Http\Controllers\Admin\StaffController::class);
                 Route::get('staff/{staff}/destroy', [\App\Http\Controllers\Admin\StaffController::class, 'destroy'])->name('staff.destroy');
 
+                //portfolio
+
+                Route::resource('portfolio', \App\Http\Controllers\Admin\PortfolioController::class);
+                Route::get('portfolio/{portfolio}/destroy', [\App\Http\Controllers\Admin\PortfolioController::class, 'destroy'])->name('portfolio.destroy');
+
                 //team
                 Route::resource('team', \App\Http\Controllers\Admin\TeamController::class);
                 Route::get('team/{team}/destroy', [\App\Http\Controllers\Admin\TeamController::class, 'destroy'])->name('team.destroy');

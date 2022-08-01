@@ -52,6 +52,13 @@
             "slug": "page"
         },
         {
+            "url": "portfolio.index",
+            "name": "Portfolio",
+            "i18n": "page",
+            "icon": "language",
+            "slug": "page"
+        },
+        {
             "url": "team.index",
             "name": "Team",
             "i18n": "page",

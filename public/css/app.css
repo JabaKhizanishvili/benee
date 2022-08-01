@@ -1000,6 +1000,9 @@ video {
 .pt-40 {
   padding-top: 10rem;
 }
+.pt-20 {
+  padding-top: 5rem;
+}
 .pt-10 {
   padding-top: 2.5rem;
 }
@@ -1011,9 +1014,6 @@ video {
 }
 .pl-10 {
   padding-left: 2.5rem;
-}
-.pt-20 {
-  padding-top: 5rem;
 }
 .pt-44 {
   padding-top: 11rem;

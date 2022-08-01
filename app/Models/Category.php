@@ -129,9 +129,9 @@ class Category extends Model
         ];
     }
 
-    public function products(): hasMany
+    public function portfilio(): hasMany
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Portfilio::class);
     }
 
 
