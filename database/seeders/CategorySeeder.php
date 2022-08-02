@@ -30,12 +30,12 @@ class CategorySeeder extends Seeder
             ],
             [
                 "slug" => "video",
-                "ge" => ["name" => "VIDEO & GRAPHIC PRODUCTIONVIDEO & GRAPHIC PRODUCTION"],
-                "en" => ["name" => "VIDEO & GRAPHIC PRODUCTIONVIDEO & GRAPHIC PRODUCTION"],
+                "ge" => ["name" => "Video & Graphic Production"],
+                "en" => ["name" => "Video & Graphic Production"],
             ],
             [
                 "slug" => "socmedia",
-                "ge" => ["name" => "სოციალური მედია"],
+                "ge" => ["name" => "SOCIAL MEDIA"],
                 "en" => ["name" => "SOCIAL MEDIA"],
             ],
             [

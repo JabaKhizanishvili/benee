@@ -22,7 +22,7 @@ import Layout from "../Layouts/Layout";
 import TextSlide from "../components/TextSlide";
 
 const Projects = ({ seo, projects }) => {
-
+    console.log(projects.data, 'esaa');
 
     const [activeLink, setActiveLink] = useState(0);
 
@@ -47,6 +47,7 @@ const Projects = ({ seo, projects }) => {
     return (
         <Layout seo={seo}>
             <>
+
                 <section className="wrapper  pt-40 text-center min-h-screen">
                     {projectLinks.map((item, index) => {
                         return (
@@ -91,7 +92,10 @@ const Projects = ({ seo, projects }) => {
                         <TextSlide />
                     </div>
 
-                    {/* <MouseParallaxChild
+
+
+
+                    <MouseParallaxChild
                         className="projectWrapper"
                         factorX={0.07}
                         factorY={0.05}
@@ -192,7 +196,7 @@ const Projects = ({ seo, projects }) => {
                                 ></div>
                             </div>
                         </Link>
-                    </MouseParallaxChild> */}
+                    </MouseParallaxChild>
 
                 </MouseParallaxContainer>
 

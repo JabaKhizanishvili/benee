@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Staff;
 use App\Models\Slider;
@@ -46,19 +47,8 @@ class HomeController extends Controller
             ->with(['latestImage', 'translations'])->paginate(6);
 
         return Inertia::render('Home', [
-            // "tiles" => Product::with(['latestImage', 'translations'])->where("category_id", 15)->paginate(6),
-            "tiles" => $query,
-            // "tiles" => $query,
-            "doors" => Product::select('products.*', 'categories.slug')
-                ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
-                ->where('categories.slug', '=', 'ironDoors')
-                ->with(['latestImage', 'translations'])->paginate(6),
+            "category" => Category::with('translations')->get(),
 
-            "bath" => Product::select('products.*', 'categories.slug')
-                ->leftJoin('categories', 'categories.id', '=', 'products.category_id')
-                ->where('categories.slug', '=', 'bathroom')
-                ->with(['latestImage', 'translations'])->paginate(6),
-            'partners' => Staff::with('latestImage')->get(),
             "sliders" => $sliders->get(), "page" => $page, "seo" => [
                 "title" => $page->meta_title,
                 "description" => $page->meta_description,

@@ -2,7 +2,6 @@ import { Link } from '@inertiajs/inertia-react'
 import React from 'react';
 // import HeroBg from "../assets/images/bg/1.png";
 import { FiArrowRight } from "react-icons/fi";
-import { projectLinks } from "../components/Data";
 import { useRef, useState } from "react";
 // import Layout from "../../Layouts/Layout";
 import {
@@ -21,8 +20,37 @@ import {
 // import img9 from "../assets/images/projects/9.png";
 import TextSlide from "../components/TextSlide";
 import Layout from "../Layouts/Layout";
+import { Route } from 'react-router-dom';
 
-const Home = ({ seo }) => {
+const Home = ({ seo, category }) => {
+    const projectLinks = [
+        {
+            link: "/",
+            name: "All projects",
+        },
+        {
+            link: "/",
+            name: "Brand Platform & Identity Design",
+        },
+        {
+            link: "/",
+            name: "Creative",
+        },
+        {
+            link: "/",
+            name: "Video & Graphic Production",
+        },
+        {
+            link: "/",
+            name: "Social media",
+        },
+        {
+            link: "/",
+            name: "Art direction",
+        },
+    ];
+
+    console.log(category);
     const [activeLink, setActiveLink] = useState(0);
 
     const [transform, setTransform] = useState("translate3d(0, 0, 0)");
@@ -68,12 +96,12 @@ const Home = ({ seo }) => {
                     </div>
                 </section>
                 <section className="wrapper py-24 text-center">
-                    {projectLinks.map((item, index) => {
+                    {category.map((item, index) => {
                         return (
                             <Link
                                 data-aos="fade-up"
                                 key={index}
-                                href={item.link}
+                                href={route("client.news.show", item.name)}
                                 className="fillup mb-2  text-zinc-500 xl:text-6xl lg:text-5xl md:text-4xl text-2xl block w-fit mx-auto uppercase transition "
                                 style={{
                                     color: activeLink === index ? "#E9776D" : "",
@@ -84,9 +112,9 @@ const Home = ({ seo }) => {
                                     aria-hidden="true"
                                     className={activeLink === index && "hidden"}
                                 >
-                                    {item.text}
+                                    {item.name}
                                 </span>
-                                {item.text}
+                                {item.name}
                             </Link>
                         );
                     })}

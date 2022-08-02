@@ -41,7 +41,13 @@ const colors = {
 };
 
 module.exports = {
-    content: ["./resources/js/**/*.{html,js,jsx}"],
+    // content: ["./resources/js/**/*.{html,js,jsx}"],
+    content: [
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.jsx",
+        "./resources/**/*.vue",
+    ],
     theme: {
         extend: {
             colors: colors,
