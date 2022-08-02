@@ -68,6 +68,13 @@ class PortfolioController extends Controller
 
     public function search(Request $request, $locale, $slug, $index, Slider $sliders)
     {
+        // dd($slug);
+        $categorysearch = Category::with('translations')->get();
+        $categoryid = $categorysearch->where('name', $slug);
+        // dd($categoryid[0]->id);
+
+        $searchedProducts = Portfolio::with(['files', 'latestImage', 'translation'])->where('category_id', $categoryid[0]->id)->get();
+        // dd($searchedProducts);
         $portfolio = Portfolio::where("status", 0)->with(['files', 'translations', 'latestImage'])->paginate(6);
         $page = Page::where('key', 'home')->firstOrFail();
         $images = [];
@@ -81,6 +88,7 @@ class PortfolioController extends Controller
 
 
         return Inertia::render('Home', [
+            "searched" => $searchedProducts,
             "portfolio" => $portfolio,
             "category" => Category::with('translations')->get(),
             'active' => $slug,

@@ -3540,10 +3540,11 @@ var Home = function Home(_ref) {
       category = _ref.category,
       active = _ref.active,
       indexx = _ref.indexx,
-      portfolio = _ref.portfolio;
-
+      portfolio = _ref.portfolio,
+      searched = _ref.searched;
   // console.log(indexx, active, 'esaa');
-  // console.log(portfolio);
+  console.log(searched, 'esaa');
+
   var renderHTML = function renderHTML(rawHTML) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
       dangerouslySetInnerHTML: {

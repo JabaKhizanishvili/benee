@@ -18,7 +18,7 @@ class Portfolio extends Model
 {
     use Translatable, HasFactory, ScopeFilter;
     protected $table = 'portfolio';
-    protected $fillable = ['status', 'video_url'];
+    protected $fillable = ['status', 'video_url', 'category_id'];
 
     public function getFilterScopes(): array
     {

@@ -22,10 +22,10 @@ import TextSlide from "../components/TextSlide";
 import Layout from "../Layouts/Layout";
 import { Route } from 'react-router-dom';
 
-const Home = ({ seo, category, active, indexx, portfolio }) => {
+const Home = ({ seo, category, active, indexx, portfolio, searched }) => {
 
     // console.log(indexx, active, 'esaa');
-    // console.log(portfolio);
+    console.log(searched, 'esaa');
 
     const renderHTML = (rawHTML) =>
         React.createElement("div", {
