@@ -4694,7 +4694,29 @@ var navigations = [{
 }, {
   link: route("client.contact.index"),
   text: "Contact us"
-}]; // social media
+}]; // export const navigations = [
+//     {
+//         link: route("client.home.index"),
+//         text: __("client.navbar_home", sharedData),
+//     },
+//     {
+//         link: route("client.aboutus"),
+//         text: __("client.navbar_about_us", sharedData),
+//     },
+//     {
+//         link: route("client.project.index"),
+//         text: __("client.navbar_portfolio", sharedData),
+//     },
+//     {
+//         link: route("client.news.index"),
+//         text: __("client.navbar_news", sharedData),
+//     },
+//     {
+//         link: route("client.contact.index"),
+//         text: __("client.navbar_contact", sharedData),
+//     },
+// ];
+// social media
 
 var socialMedia = [{
   icon: '/assets/images/sm/fb.svg',
@@ -4846,6 +4868,26 @@ var Footer = function Footer(_ref) {
   var seo = _ref.seo,
       page = _ref.page;
   var pathname = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.pathname;
+  var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props,
+      errors = _usePage$props.errors,
+      gphone = _usePage$props.gphone,
+      gemail = _usePage$props.gemail,
+      gaddress = _usePage$props.gaddress;
+  var contactInfo = {
+    email: gemail.value,
+    tel: gphone.value,
+    location: gaddress.value
+  };
+
+  var renderHTML = function renderHTML(rawHTML) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      dangerouslySetInnerHTML: {
+        __html: rawHTML
+      }
+    });
+  };
+
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.localizations;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper py-10 text-center ",
     style: {
@@ -4859,7 +4901,7 @@ var Footer = function Footer(_ref) {
     className: "mx-auto mb-10"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "uppercase sm:text-4xl text-2xl mb-10"
-  }, "get in touch"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, __("client.footer_getintouch", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: " flex items-center justify-center mb-8"
   }, _Data__WEBPACK_IMPORTED_MODULE_1__.socialMedia.map(function (sm, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
@@ -4873,14 +4915,14 @@ var Footer = function Footer(_ref) {
     }));
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     className: "mb-2 block regular",
-    href: "mailto:".concat(_Data__WEBPACK_IMPORTED_MODULE_1__.contactInfo.email)
-  }, _Data__WEBPACK_IMPORTED_MODULE_1__.contactInfo.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "mailto:".concat(contactInfo.email)
+  }, contactInfo.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     className: "mb-2 block regular",
-    href: "tel:".concat(_Data__WEBPACK_IMPORTED_MODULE_1__.contactInfo.tel)
-  }, _Data__WEBPACK_IMPORTED_MODULE_1__.contactInfo.tel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+    href: "tel:".concat(contactInfo.tel)
+  }, contactInfo.tel), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     className: "mb-2 block regular",
     href: "https://www.google.com/maps/place/15+Alexander+Kazbegi+Ave,+T'bilisi/@41.726332,44.7604301,17z/data=!3m1!4b1!4m5!3m4!1s0x404472e00f27011f:0x6e479c2aeffe1b8!8m2!3d41.726328!4d44.7626188"
-  }, _Data__WEBPACK_IMPORTED_MODULE_1__.contactInfo.location));
+  }, contactInfo.location));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Footer);
@@ -4929,6 +4971,31 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 // import img9 from "../assets/images/navbar/9.png";
 
 var Navbar = function Navbar() {
+  var renderHTML = function renderHTML(rawHTML) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      dangerouslySetInnerHTML: {
+        __html: rawHTML
+      }
+    });
+  };
+
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props.localizations;
+  var navigations = [{
+    link: route("client.home.index"),
+    text: __("client.navbar_home", sharedData)
+  }, {
+    link: route("client.aboutus"),
+    text: __("client.navbar_about_us", sharedData)
+  }, {
+    link: route("client.project.index"),
+    text: __("client.navbar_portfolio", sharedData)
+  }, {
+    link: route("client.news.index"),
+    text: __("client.navbar_news", sharedData)
+  }, {
+    link: route("client.contact.index"),
+    text: __("client.navbar_contact", sharedData)
+  }];
   var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.usePage)().props,
       errors = _usePage$props.errors,
       gphone = _usePage$props.gphone,
@@ -4970,7 +5037,7 @@ var Navbar = function Navbar() {
     href: locale_urls["English"]
   }, "en") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
     href: locale_urls["ქართული"]
-  }, "ge")), _Data__WEBPACK_IMPORTED_MODULE_2__.navigations.map(function (nav, index) {
+  }, "ge")), navigations.map(function (nav, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
       onMouseEnter: function onMouseEnter() {
         return setIndexHovered(index);

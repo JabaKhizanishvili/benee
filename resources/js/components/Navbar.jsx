@@ -16,6 +16,35 @@ import { navigations, socialMedia } from "./Data";
 // import img9 from "../assets/images/navbar/9.png";
 
 const Navbar = () => {
+    const renderHTML = (rawHTML) =>
+        React.createElement("div", {
+            dangerouslySetInnerHTML: { __html: rawHTML },
+        });
+    const sharedData = usePage().props.localizations;
+
+    const navigations = [
+        {
+            link: route("client.home.index"),
+            text: __("client.navbar_home", sharedData),
+        },
+        {
+            link: route("client.aboutus"),
+            text: __("client.navbar_about_us", sharedData),
+        },
+        {
+            link: route("client.project.index"),
+            text: __("client.navbar_portfolio", sharedData),
+        },
+        {
+            link: route("client.news.index"),
+            text: __("client.navbar_news", sharedData),
+        },
+        {
+            link: route("client.contact.index"),
+            text: __("client.navbar_contact", sharedData),
+        },
+    ];
+
     const {
         errors,
         gphone,

@@ -79,6 +79,29 @@ export const navigations = [
     },
 ];
 
+// export const navigations = [
+//     {
+//         link: route("client.home.index"),
+//         text: __("client.navbar_home", sharedData),
+//     },
+//     {
+//         link: route("client.aboutus"),
+//         text: __("client.navbar_about_us", sharedData),
+//     },
+//     {
+//         link: route("client.project.index"),
+//         text: __("client.navbar_portfolio", sharedData),
+//     },
+//     {
+//         link: route("client.news.index"),
+//         text: __("client.navbar_news", sharedData),
+//     },
+//     {
+//         link: route("client.contact.index"),
+//         text: __("client.navbar_contact", sharedData),
+//     },
+// ];
+
 // social media
 export const socialMedia = [
     {

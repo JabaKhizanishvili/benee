@@ -45,13 +45,6 @@
             "slug": "change_password"
         },
         {
-            "url": "slider.index",
-            "name": "Slider",
-            "i18n": "page",
-            "icon": "language",
-            "slug": "page"
-        },
-        {
             "url": "portfolio.index",
             "name": "Portfolio",
             "i18n": "page",

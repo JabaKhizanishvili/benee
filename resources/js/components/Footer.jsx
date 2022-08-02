@@ -1,11 +1,23 @@
 // import Logo from "../assets/images/logo/1.png";
 import React from "react";
-import { contactInfo, socialMedia } from "./Data";
+import { socialMedia } from "./Data";
 // import { Link, useLocation } from "react-router-dom";
 import { Link, usePage } from "@inertiajs/inertia-react";
 
 const Footer = ({ seo, page, }) => {
     const { pathname } = usePage().props;
+    const { errors, gphone, gemail, gaddress } = usePage().props;
+    const contactInfo = {
+        email: gemail.value,
+        tel: gphone.value,
+        location: gaddress.value,
+    };
+
+    const renderHTML = (rawHTML) =>
+        React.createElement("div", {
+            dangerouslySetInnerHTML: { __html: rawHTML },
+        });
+    const sharedData = usePage().props.localizations;
     return (
         <div
             className="wrapper py-10 text-center "
@@ -14,7 +26,7 @@ const Footer = ({ seo, page, }) => {
             <Link href="/">
                 <img src={'/assets/images/logo/1.png'} alt="" className="mx-auto mb-10" />
             </Link>
-            <div className="uppercase sm:text-4xl text-2xl mb-10">get in touch</div>
+            <div className="uppercase sm:text-4xl text-2xl mb-10">{__("client.footer_getintouch", sharedData)}</div>
 
             <div className=" flex items-center justify-center mb-8">
                 {socialMedia.map((sm, index) => {
