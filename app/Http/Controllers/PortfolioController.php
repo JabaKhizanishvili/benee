@@ -70,10 +70,12 @@ class PortfolioController extends Controller
     {
         // dd($slug);
         $categorysearch = Category::with('translations')->get();
-        $categoryid = $categorysearch->where('name', $slug);
-        // dd($categoryid[0]->id);
-
-        $searchedProducts = Portfolio::with(['files', 'latestImage', 'translation'])->where('category_id', $categoryid[0]->id)->get();
+        $categoryid = $categorysearch->where('name', $slug)->first();
+        // dd($categoryid->id);
+        $searchedProducts = [];
+        if ($categoryid != null) {
+            $searchedProducts = Portfolio::with(['files', 'latestImage', 'translation'])->where('category_id', $categoryid->id)->get();
+        }
         // dd($searchedProducts);
         $portfolio = Portfolio::where("status", 0)->with(['files', 'translations', 'latestImage'])->paginate(6);
         $page = Page::where('key', 'home')->firstOrFail();

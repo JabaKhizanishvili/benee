@@ -3543,10 +3543,10 @@ var Home = function Home(_ref) {
       portfolio = _ref.portfolio,
       searched = _ref.searched,
       images = _ref.images;
+
   // console.log(indexx, active, 'esaa');
   // console.log(searched, 'esaa');
-  console.log(images);
-
+  // console.log(images);
   var renderHTML = function renderHTML(rawHTML) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
       dangerouslySetInnerHTML: {
