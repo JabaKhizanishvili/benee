@@ -21,8 +21,7 @@ import Layout from "../Layouts/Layout";
 // import img9 from "../assets/images/projects/3.png";
 import TextSlide from "../components/TextSlide";
 
-const Projects = ({ seo, projects }) => {
-    console.log(projects.data, 'esaa');
+const Projects = ({ seo, projects, active }) => {
 
     const [activeLink, setActiveLink] = useState(0);
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Portfolio;
 use App\Models\Staff;
 use App\Models\Slider;
 use Illuminate\Support\Facades\App;
@@ -21,7 +22,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-
+        $portfolio = Portfolio::where("status", 0)->with(['files', 'translations', 'latestImage'])->paginate(6);
 
         $page = Page::where('key', 'home')->firstOrFail();
 
@@ -48,7 +49,7 @@ class HomeController extends Controller
 
         return Inertia::render('Home', [
             "category" => Category::with('translations')->get(),
-
+            "portfolio" => $portfolio,
             "sliders" => $sliders->get(), "page" => $page, "seo" => [
                 "title" => $page->meta_title,
                 "description" => $page->meta_description,

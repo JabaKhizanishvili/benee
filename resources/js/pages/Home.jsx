@@ -22,7 +22,11 @@ import TextSlide from "../components/TextSlide";
 import Layout from "../Layouts/Layout";
 import { Route } from 'react-router-dom';
 
-const Home = ({ seo, category }) => {
+const Home = ({ seo, category, active, indexx, portfolio }) => {
+
+    // console.log(indexx, active, 'esaa');
+    // console.log(portfolio);
+
     const renderHTML = (rawHTML) =>
         React.createElement("div", {
             dangerouslySetInnerHTML: { __html: rawHTML },
@@ -30,7 +34,7 @@ const Home = ({ seo, category }) => {
     const sharedData = usePage().props.localizations;
     let projectLinks = [
         {
-            link: "/",
+            link: route("client.home.index"),
             name: "All projects",
         },
     ];
@@ -38,13 +42,14 @@ const Home = ({ seo, category }) => {
     category.map((e) => {
         projectLinks.push(
             {
-                link: route("client.project.show", e.name),
+                link: '',
                 name: e.name,
             }
         )
     })
 
-    const [activeLink, setActiveLink] = useState(0);
+    const [activeLink, setActiveLink] = useState(indexx ? indexx : 0);
+
 
     const [transform, setTransform] = useState("translate3d(0, 0, 0)");
     const [transformReverse, setTransformReverse] = useState(
@@ -89,21 +94,21 @@ const Home = ({ seo, category }) => {
                     </div>
                 </section>
                 <section className="wrapper py-24 text-center">
-                    {projectLinks.map((item, index) => {
+                    {projectLinks.map((item, i) => {
                         return (
                             <Link
                                 data-aos="fade-up"
-                                key={index}
-                                href={item.link}
+                                key={i}
+                                href={i != 0 ? route("client.project.show", [item.name, i]) : route("client.home.index")}
                                 className="fillup mb-2  text-zinc-500 xl:text-6xl lg:text-5xl md:text-4xl text-2xl block w-fit mx-auto uppercase transition "
                                 style={{
-                                    color: activeLink === index ? "#E9776D" : "",
+                                    color: activeLink == i ? "#E9776D" : "",
                                 }}
-                                onClick={() => setActiveLink(index)}
+                                onClick={() => setActiveLink(i)}
                             >
                                 <span
                                     aria-hidden="true"
-                                    className={activeLink === index && "hidden"}
+                                    className={activeLink === i && "hidden"}
                                 >
                                     {item.name}
                                 </span>

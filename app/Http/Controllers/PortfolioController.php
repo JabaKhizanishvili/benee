@@ -66,8 +66,9 @@ class PortfolioController extends Controller
         ]);
     }
 
-    public function search(Request $request, $locale, $slug, Slider $sliders)
+    public function search(Request $request, $locale, $slug, $index, Slider $sliders)
     {
+        $portfolio = Portfolio::where("status", 0)->with(['files', 'translations', 'latestImage'])->paginate(6);
         $page = Page::where('key', 'home')->firstOrFail();
         $images = [];
         foreach ($page->sections as $sections) {
@@ -80,9 +81,10 @@ class PortfolioController extends Controller
 
 
         return Inertia::render('Home', [
+            "portfolio" => $portfolio,
             "category" => Category::with('translations')->get(),
             'active' => $slug,
-
+            "indexx" => $index,
             "sliders" => $sliders->get(), "page" => $page, "seo" => [
                 "title" => $page->meta_title,
                 "description" => $page->meta_description,
