@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Portfolio;
 use App\Models\Page;
+use App\Models\Slider;
+use App\Models\Category;
+
 use Inertia\Inertia;
 
 use Illuminate\Http\Request;
@@ -63,28 +66,34 @@ class PortfolioController extends Controller
         ]);
     }
 
-    public function show(Request $request, $locale, $slug)
+    public function search(Request $request, $locale, $slug, Slider $sliders)
     {
-
         $page = Page::where('key', 'home')->firstOrFail();
+        $images = [];
+        foreach ($page->sections as $sections) {
+            if ($sections->file) {
+                $images[] = asset($sections->file->getFileUrlAttribute());
+            } else {
+                $images[] = null;
+            }
+        }
 
-        return Inertia::render(
-            'SingleProject',
-            [
-                // "product" => Product::with('latestImage')->where('category_id', ('7'))->paginate(10),
-                // "product" => Product::with(['latestImage', 'translations'])->where("category_id", 1)->paginate(10),
-                "page" => $page,
-                "seo" => [
-                    "title" => $page->meta_title,
-                    "description" => $page->meta_description,
-                    "keywords" => $page->meta_keyword,
-                    "og_title" => $page->meta_og_title,
-                    "og_description" => $page->meta_og_description,
-                    //            "image" => "imgg",
-                    //            "locale" => App::getLocale()
-                ],
-            ]
-        )->withViewData([
+
+        return Inertia::render('Home', [
+            "category" => Category::with('translations')->get(),
+            'active' => $slug,
+
+            "sliders" => $sliders->get(), "page" => $page, "seo" => [
+                "title" => $page->meta_title,
+                "description" => $page->meta_description,
+                "keywords" => $page->meta_keyword,
+                "og_title" => $page->meta_og_title,
+                "og_description" => $page->meta_og_description,
+
+                //            "image" => "imgg",
+                //            "locale" => App::getLocale()
+            ],  'images' => $images
+        ])->withViewData([
             'meta_title' => $page->meta_title,
             'meta_description' => $page->meta_description,
             'meta_keyword' => $page->meta_keyword,

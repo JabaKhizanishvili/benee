@@ -59,6 +59,13 @@
             "slug": "page"
         },
         {
+            "url": "category.index",
+            "name": "Category",
+            "i18n": "page",
+            "icon": "language",
+            "slug": "page"
+        },
+        {
             "url": "team.index",
             "name": "Team",
             "i18n": "page",

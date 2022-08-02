@@ -23,34 +23,22 @@ import Layout from "../Layouts/Layout";
 import { Route } from 'react-router-dom';
 
 const Home = ({ seo, category }) => {
-    const projectLinks = [
+    let projectLinks = [
         {
             link: "/",
             name: "All projects",
         },
-        {
-            link: "/",
-            name: "Brand Platform & Identity Design",
-        },
-        {
-            link: "/",
-            name: "Creative",
-        },
-        {
-            link: "/",
-            name: "Video & Graphic Production",
-        },
-        {
-            link: "/",
-            name: "Social media",
-        },
-        {
-            link: "/",
-            name: "Art direction",
-        },
     ];
 
-    console.log(category);
+    category.map((e) => {
+        projectLinks.push(
+            {
+                link: route("client.project.show", e.name),
+                name: e.name,
+            }
+        )
+    })
+
     const [activeLink, setActiveLink] = useState(0);
 
     const [transform, setTransform] = useState("translate3d(0, 0, 0)");
@@ -96,12 +84,12 @@ const Home = ({ seo, category }) => {
                     </div>
                 </section>
                 <section className="wrapper py-24 text-center">
-                    {category.map((item, index) => {
+                    {projectLinks.map((item, index) => {
                         return (
                             <Link
                                 data-aos="fade-up"
                                 key={index}
-                                href={route("client.news.show", item.name)}
+                                href={item.link}
                                 className="fillup mb-2  text-zinc-500 xl:text-6xl lg:text-5xl md:text-4xl text-2xl block w-fit mx-auto uppercase transition "
                                 style={{
                                     color: activeLink === index ? "#E9776D" : "",

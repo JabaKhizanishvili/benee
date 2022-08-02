@@ -3541,23 +3541,13 @@ var Home = function Home(_ref) {
   var projectLinks = [{
     link: "/",
     name: "All projects"
-  }, {
-    link: "/",
-    name: "Brand Platform & Identity Design"
-  }, {
-    link: "/",
-    name: "Creative"
-  }, {
-    link: "/",
-    name: "Video & Graphic Production"
-  }, {
-    link: "/",
-    name: "Social media"
-  }, {
-    link: "/",
-    name: "Art direction"
   }];
-  console.log(category);
+  category.map(function (e) {
+    projectLinks.push({
+      link: route("client.project.show", e.name),
+      name: e.name
+    });
+  });
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
@@ -3611,11 +3601,11 @@ var Home = function Home(_ref) {
     className: "inline-block h-5 w-5"
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("section", {
     className: "wrapper py-24 text-center"
-  }, category.map(function (item, index) {
+  }, projectLinks.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
       "data-aos": "fade-up",
       key: index,
-      href: route("client.news.show", item.name),
+      href: item.link,
       className: "fillup mb-2  text-zinc-500 xl:text-6xl lg:text-5xl md:text-4xl text-2xl block w-fit mx-auto uppercase transition ",
       style: {
         color: activeLink === index ? "#E9776D" : ""
