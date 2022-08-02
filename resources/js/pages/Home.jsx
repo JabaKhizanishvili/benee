@@ -22,10 +22,11 @@ import TextSlide from "../components/TextSlide";
 import Layout from "../Layouts/Layout";
 import { Route } from 'react-router-dom';
 
-const Home = ({ seo, category, active, indexx, portfolio, searched }) => {
+const Home = ({ seo, category, active, indexx, portfolio, searched, images }) => {
 
     // console.log(indexx, active, 'esaa');
-    console.log(searched, 'esaa');
+    // console.log(searched, 'esaa');
+    console.log(images);
 
     const renderHTML = (rawHTML) =>
         React.createElement("div", {
@@ -74,13 +75,13 @@ const Home = ({ seo, category, active, indexx, portfolio, searched }) => {
             <>
                 <section
                     className="h-screen bg-cover bg-center relative"
-                    style={{ backgroundImage: `url('/assets/images/bg/1.png)` }}
+                    style={{ backgroundImage: `url(${images[0]})` }}
                 >
                     {" "}
                     <img
-                        src={'/assets/images/bg/1.png'}
+                        src={images[0]}
                         className=" img absolute w-full h-full left-0 top-0 -z-10 object-cover"
-                        alt=""
+                        alt="err"
                     />
                     <div className="absolute left-0 bottom-0 w-full h-96 bg-gradient-to-t from-black to-transparent"></div>
                     <div className="wrapper h-full flex flex-col justify-end items-start z-20 relative pb-20">

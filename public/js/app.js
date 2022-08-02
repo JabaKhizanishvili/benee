@@ -3541,9 +3541,11 @@ var Home = function Home(_ref) {
       active = _ref.active,
       indexx = _ref.indexx,
       portfolio = _ref.portfolio,
-      searched = _ref.searched;
+      searched = _ref.searched,
+      images = _ref.images;
   // console.log(indexx, active, 'esaa');
-  console.log(searched, 'esaa');
+  // console.log(searched, 'esaa');
+  console.log(images);
 
   var renderHTML = function renderHTML(rawHTML) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
@@ -3596,12 +3598,12 @@ var Home = function Home(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("section", {
     className: "h-screen bg-cover bg-center relative",
     style: {
-      backgroundImage: "url('/assets/images/bg/1.png)"
+      backgroundImage: "url(".concat(images[0], ")")
     }
   }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("img", {
-    src: '/assets/images/bg/1.png',
+    src: images[0],
     className: " img absolute w-full h-full left-0 top-0 -z-10 object-cover",
-    alt: ""
+    alt: "err"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: "absolute left-0 bottom-0 w-full h-96 bg-gradient-to-t from-black to-transparent"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
