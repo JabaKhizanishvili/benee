@@ -3538,6 +3538,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Home = function Home(_ref) {
   var seo = _ref.seo,
       category = _ref.category;
+
+  var renderHTML = function renderHTML(rawHTML) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+      dangerouslySetInnerHTML: {
+        __html: rawHTML
+      }
+    });
+  };
+
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props.localizations;
   var projectLinks = [{
     link: "/",
     name: "All projects"
@@ -3592,9 +3602,9 @@ var Home = function Home(_ref) {
     className: "wrapper h-full flex flex-col justify-end items-start z-20 relative pb-20"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: "opacity-50 text-3xl h-fit"
-  }, "Project name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h1", {
+  }, " ", __("client.home_main_title", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("h1", {
     className: "lg:text-6xl lg:leading-tight text-4xl mt-4 mb-8  h-fit"
-  }, "We work on delivering unique ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("br", null), " visual solutions to your company"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+  }, renderHTML(__('client.home_main_text', sharedData).replace(/(?:\r\n|\r|\n)/g, '<br>'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
     href: "/",
     className: "regular"
   }, "Learn more ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_icons_fi__WEBPACK_IMPORTED_MODULE_5__.FiArrowRight, {
@@ -4832,7 +4842,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Footer = function Footer() {
+var Footer = function Footer(_ref) {
+  var seo = _ref.seo,
+      page = _ref.page;
   var pathname = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.pathname;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "wrapper py-10 text-center ",

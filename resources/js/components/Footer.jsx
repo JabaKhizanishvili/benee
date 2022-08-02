@@ -4,7 +4,7 @@ import { contactInfo, socialMedia } from "./Data";
 // import { Link, useLocation } from "react-router-dom";
 import { Link, usePage } from "@inertiajs/inertia-react";
 
-const Footer = () => {
+const Footer = ({ seo, page, }) => {
     const { pathname } = usePage().props;
     return (
         <div

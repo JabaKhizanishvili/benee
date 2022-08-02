@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/inertia-react'
+import { Link, usePage } from '@inertiajs/inertia-react'
 import React from 'react';
 // import HeroBg from "../assets/images/bg/1.png";
 import { FiArrowRight } from "react-icons/fi";
@@ -23,6 +23,11 @@ import Layout from "../Layouts/Layout";
 import { Route } from 'react-router-dom';
 
 const Home = ({ seo, category }) => {
+    const renderHTML = (rawHTML) =>
+        React.createElement("div", {
+            dangerouslySetInnerHTML: { __html: rawHTML },
+        });
+    const sharedData = usePage().props.localizations;
     let projectLinks = [
         {
             link: "/",
@@ -74,9 +79,9 @@ const Home = ({ seo, category }) => {
                     />
                     <div className="absolute left-0 bottom-0 w-full h-96 bg-gradient-to-t from-black to-transparent"></div>
                     <div className="wrapper h-full flex flex-col justify-end items-start z-20 relative pb-20">
-                        <div className="opacity-50 text-3xl h-fit">Project name</div>
+                        <div className="opacity-50 text-3xl h-fit"> {__("client.home_main_title", sharedData)}</div>
                         <h1 className="lg:text-6xl lg:leading-tight text-4xl mt-4 mb-8  h-fit">
-                            We work on delivering unique <br /> visual solutions to your company
+                            {renderHTML(__('client.home_main_text', sharedData).replace(/(?:\r\n|\r|\n)/g, '<br>'))}
                         </h1>
                         <Link href="/" className="regular">
                             Learn more <FiArrowRight className="inline-block h-5 w-5" />
