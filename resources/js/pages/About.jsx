@@ -6,13 +6,31 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper";
 import { partners, team } from "../components/Data";
-import { projectLinks } from "../components/Data";
+// import { projectLinks } from "../components/Data";
 import Layout from "../Layouts/Layout";
 
-const About = ({ seo, partners, team }) => {
+const About = ({ seo, partners, team, category }) => {
+    console.log(category);
 
     const renderHTML = (rawHTML) => React.createElement("div", { dangerouslySetInnerHTML: { __html: rawHTML } });
     const sharedData = usePage().props.localizations;
+
+
+    let projectLinks = [
+        {
+            link: route("client.home.index"),
+            name: "WhAT WE DO",
+        },
+    ];
+
+    category.map((e) => {
+        projectLinks.push(
+            {
+                link: '',
+                name: e.name,
+            }
+        )
+    })
 
     let links = function (links) {
         let rows = [];
@@ -85,20 +103,23 @@ const About = ({ seo, partners, team }) => {
 
                     <div className="wrapper min-h-screen flex flex-col justify-end items-start pb-20 pt-40">
                         <div data-aos="fade-down" className="text-3xl">
-                            About us
+                            {/* About us */}
+                            {__("client.navbar_about_us", sharedData)}
                         </div>
                         <div
                             data-aos="fade-right"
                             className="lg:text-6xl  text-4xl mt-4 mb-8   opacity-50"
                         >
-                            We work on delivering unique <br />
-                            visual solutions to your company
+                            {/* We work on delivering unique <br />
+                            visual solutions to your company */}
+
+                            {renderHTML(__('client.aboutus_title', sharedData).replace(/(?:\r\n|\r|\n)/g, '<br>'))}
                         </div>
                         <p
                             data-aos="fade-up"
                             className="regular max-w-2xl text-justify lg:text-base text-sm"
                         >
-                            We see every project as a chance to “leave our footprint” and
+                            {/* We see every project as a chance to “leave our footprint” and
                             explore unique motion design techniques. We works with agencies and
                             direct clients: furthermore our experienced team can manage any
                             stage of production. We see every project as a chance to “leave our
@@ -108,7 +129,8 @@ const About = ({ seo, partners, team }) => {
                             Our work encompasses graphics and identity, strategy and
                             positioning, products and packaging, exhibitions and installations,
                             websites and digital experiences, advertising and communications,
-                            data visualizations and typefaces, sound and motion.
+                            data visualizations and typefaces, sound and motion. */}
+                            {renderHTML(__('client.aboutus_text', sharedData).replace(/(?:\r\n|\r|\n)/g, '<br>'))}
                         </p>
                     </div>
                 </section>
@@ -177,19 +199,26 @@ const About = ({ seo, partners, team }) => {
                         to="/"
                         className="fillup mb-2  text-zinc-500 xl:text-6xl lg:text-5xl md:text-4xl text-2xl block w-fit mx-auto uppercase transition !text-custom-pink-500"
                     >
-                        WHAT WE DO
                     </Link>
-                    {projectLinks.map((item, index) => {
+                    {projectLinks.map((item, i) => {
                         return (
                             <Link
                                 data-aos="fade-up"
-                                key={index}
-                                to={item.link}
+                                key={i}
+                                href={i != 0 ? route("client.projects.show", [item.name, i]) : route("client.project.index")}
                                 className="fillup mb-2  text-zinc-500 xl:text-6xl lg:text-5xl md:text-4xl text-2xl block w-fit mx-auto uppercase transition "
-                                onClick={() => setActiveLink(index)}
+                                style={{
+                                    color: activeLink == i ? "#E9776D" : "",
+                                }}
+                                onClick={() => setActiveLink(i)}
                             >
-                                <span aria-hidden="true">{item.text}</span>
-                                {item.text}
+                                <span
+                                    aria-hidden="true"
+                                    className={activeLink === i && "hidden"}
+                                >
+                                    {item.name}
+                                </span>
+                                {item.name}
                             </Link>
                         );
                     })}

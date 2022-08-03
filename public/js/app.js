@@ -3169,14 +3169,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
+ // import { projectLinks } from "../components/Data";
 
 
 
 var About = function About(_ref) {
   var seo = _ref.seo,
       partners = _ref.partners,
-      team = _ref.team;
+      team = _ref.team,
+      category = _ref.category;
+  console.log(category);
 
   var renderHTML = function renderHTML(rawHTML) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
@@ -3187,6 +3189,16 @@ var About = function About(_ref) {
   };
 
   var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props.localizations;
+  var projectLinks = [{
+    link: route("client.home.index"),
+    name: "WhAT WE DO"
+  }];
+  category.map(function (e) {
+    projectLinks.push({
+      link: '',
+      name: e.name
+    });
+  });
 
   var links = function links(_links) {
     var rows = []; //links.shift();
@@ -3261,13 +3273,13 @@ var About = function About(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     "data-aos": "fade-down",
     className: "text-3xl"
-  }, "About us"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
+  }, __("client.navbar_about_us", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     "data-aos": "fade-right",
     className: "lg:text-6xl  text-4xl mt-4 mb-8   opacity-50"
-  }, "We work on delivering unique ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("br", null), "visual solutions to your company"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", {
+  }, renderHTML(__('client.aboutus_title', sharedData).replace(/(?:\r\n|\r|\n)/g, '<br>'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("p", {
     "data-aos": "fade-up",
     className: "regular max-w-2xl text-justify lg:text-base text-sm"
-  }, "We see every project as a chance to \u201Cleave our footprint\u201D and explore unique motion design techniques. We works with agencies and direct clients: furthermore our experienced team can manage any stage of production. We see every project as a chance to \u201Cleave our footprint\u201D and explore unique motion design techniques.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("br", null), "Our work encompasses graphics and identity, strategy and positioning, products and packaging, exhibitions and installations, websites and digital experiences, advertising and communications, data visualizations and typefaces, sound and motion."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("section", {
+  }, renderHTML(__('client.aboutus_text', sharedData).replace(/(?:\r\n|\r|\n)/g, '<br>'))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("section", {
     className: "py-20"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: "wrapper"
@@ -3321,18 +3333,22 @@ var About = function About(_ref) {
     "data-aos": "fade-up",
     to: "/",
     className: "fillup mb-2  text-zinc-500 xl:text-6xl lg:text-5xl md:text-4xl text-2xl block w-fit mx-auto uppercase transition !text-custom-pink-500"
-  }, "WHAT WE DO"), _components_Data__WEBPACK_IMPORTED_MODULE_5__.projectLinks.map(function (item, index) {
+  }), projectLinks.map(function (item, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
       "data-aos": "fade-up",
-      key: index,
-      to: item.link,
+      key: i,
+      href: i != 0 ? route("client.projects.show", [item.name, i]) : route("client.project.index"),
       className: "fillup mb-2  text-zinc-500 xl:text-6xl lg:text-5xl md:text-4xl text-2xl block w-fit mx-auto uppercase transition ",
+      style: {
+        color: activeLink == i ? "#E9776D" : ""
+      },
       onClick: function onClick() {
-        return setActiveLink(index);
+        return setActiveLink(i);
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("span", {
-      "aria-hidden": "true"
-    }, item.text), item.text);
+      "aria-hidden": "true",
+      className: activeLink === i && "hidden"
+    }, item.name), item.name);
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("section", {
     className: "wrapper "
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
@@ -3379,9 +3395,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_icons_fi__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/fi */ "./node_modules/react-icons/fi/index.esm.js");
+/* harmony import */ var react_icons_fi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-icons/fi */ "./node_modules/react-icons/fi/index.esm.js");
 /* harmony import */ var _components_Data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Data */ "./resources/js/components/Data.js");
 /* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Layouts/Layout */ "./resources/js/Layouts/Layout.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
 
 
 
@@ -3389,6 +3407,26 @@ __webpack_require__.r(__webpack_exports__);
 
 var Contact = function Contact(_ref) {
   var seo = _ref.seo;
+  var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props,
+      errors = _usePage$props.errors,
+      gphone = _usePage$props.gphone,
+      gemail = _usePage$props.gemail,
+      gaddress = _usePage$props.gaddress,
+      gfacebook = _usePage$props.gfacebook,
+      ginstagram = _usePage$props.ginstagram,
+      gtwitter = _usePage$props.gtwitter,
+      gbehence = _usePage$props.gbehence,
+      gdribbble = _usePage$props.gdribbble;
+
+  var renderHTML = function renderHTML(rawHTML) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      dangerouslySetInnerHTML: {
+        __html: rawHTML
+      }
+    });
+  };
+
+  var sharedData = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.localizations;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
     seo: seo
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
@@ -3417,7 +3455,7 @@ var Contact = function Contact(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     "data-aos": "fade-right",
     className: "uppercase text-5xl z-30 mb-10  lg:mb-0"
-  }, "Contact us"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+  }, __("client.navbar_contact", sharedData)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
     "data-aos": "zoom-in-up",
     className: "relative z-30 w-full lg:w-auto"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -3441,7 +3479,7 @@ var Contact = function Contact(_ref) {
     placeholder: "Message"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
     className: "regular"
-  }, "Send message ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fi__WEBPACK_IMPORTED_MODULE_3__.FiArrowRight, {
+  }, "Send message ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fi__WEBPACK_IMPORTED_MODULE_4__.FiArrowRight, {
     className: "inline-block h-5 w-5"
   })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("footer", {
     className: "grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 wrapper lg:gap-10 gap-5 lg:pb-32 pb-20 pt-10"
@@ -3451,19 +3489,19 @@ var Contact = function Contact(_ref) {
     className: "h-px bg-white w-5 inline-block pr-2 align-middle"
   }), " ", "address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "regular"
-  }, _components_Data__WEBPACK_IMPORTED_MODULE_1__.contactInfo.location)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, gaddress.value)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "opacity-50 lg:mb-5 mb-2 regular"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "h-px bg-white w-5 inline-block pr-2 align-middle"
   }), " ", "phone"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "regular"
-  }, _components_Data__WEBPACK_IMPORTED_MODULE_1__.contactInfo.location)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, gphone.value)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "opacity-50 lg:mb-5 mb-2 regular"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "h-px bg-white w-5 inline-block pr-2 align-middle"
   }), " ", "email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "regular"
-  }, _components_Data__WEBPACK_IMPORTED_MODULE_1__.contactInfo.location)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+  }, gemail.value)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "opacity-50 lg:mb-5 mb-2 regular"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "h-px bg-white w-5 inline-block pr-2 align-middle"
@@ -4897,12 +4935,18 @@ __webpack_require__.r(__webpack_exports__);
 var Footer = function Footer(_ref) {
   var seo = _ref.seo,
       page = _ref.page;
-  var pathname = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.pathname;
+  var pathname = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.pathname; // const { errors, gphone, gemail, gaddress } = usePage().props;
+
   var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props,
       errors = _usePage$props.errors,
       gphone = _usePage$props.gphone,
       gemail = _usePage$props.gemail,
-      gaddress = _usePage$props.gaddress;
+      gaddress = _usePage$props.gaddress,
+      gfacebook = _usePage$props.gfacebook,
+      ginstagram = _usePage$props.ginstagram,
+      gtwitter = _usePage$props.gtwitter,
+      gbehence = _usePage$props.gbehence,
+      gdribbble = _usePage$props.gdribbble;
   var contactInfo = {
     email: gemail.value,
     tel: gphone.value,

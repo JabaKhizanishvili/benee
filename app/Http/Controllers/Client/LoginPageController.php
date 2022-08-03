@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use App\Models\Staff;
 use App\Models\Team;
+use App\Models\Category;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -159,6 +160,7 @@ class LoginPageController extends Controller
         //dd($products);
 
         return Inertia::render('About', [
+            "category" => Category::with('translations')->get(),
             "partners" => Staff::with('latestImage')->get(),
             "team" => Team::with('latestImage')->paginate(9),
             'success' => $request->session()->get('success'),

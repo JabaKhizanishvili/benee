@@ -176,8 +176,8 @@ class HandleInertiaRequests extends Middleware
             "gaddress" => $gaddress,
             "ginstagram" => $ginstagram,
             "gfacebook" => $gfacebook,
-            "gcity" => $gcity,
-            "gcountry" => $gcountry
+            "gbehance" => $gbehance,
+            "gdribbble" => $gdribbble
         ]);
     }
 }

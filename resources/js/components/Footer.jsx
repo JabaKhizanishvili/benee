@@ -6,7 +6,8 @@ import { Link, usePage } from "@inertiajs/inertia-react";
 
 const Footer = ({ seo, page, }) => {
     const { pathname } = usePage().props;
-    const { errors, gphone, gemail, gaddress } = usePage().props;
+    // const { errors, gphone, gemail, gaddress } = usePage().props;
+    const { errors, gphone, gemail, gaddress, gfacebook, ginstagram, gtwitter, gbehence, gdribbble } = usePage().props;
     const contactInfo = {
         email: gemail.value,
         tel: gphone.value,

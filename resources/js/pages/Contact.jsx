@@ -2,8 +2,15 @@ import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { contactInfo, socialMedia } from "../components/Data";
 import Layout from "../Layouts/Layout";
+import { Link, usePage } from "@inertiajs/inertia-react";
 
 const Contact = ({ seo }) => {
+    const { errors, gphone, gemail, gaddress, gfacebook, ginstagram, gtwitter, gbehence, gdribbble } = usePage().props;
+    const renderHTML = (rawHTML) =>
+        React.createElement("div", {
+            dangerouslySetInnerHTML: { __html: rawHTML },
+        });
+    const sharedData = usePage().props.localizations;
     return (
         <Layout seo={seo}>
             <>
@@ -29,7 +36,7 @@ const Contact = ({ seo }) => {
                                 data-aos="fade-right"
                                 className="uppercase text-5xl z-30 mb-10  lg:mb-0"
                             >
-                                Contact us
+                                {__("client.navbar_contact", sharedData)}
                             </h1>
                             <form
                                 data-aos="zoom-in-up"
@@ -74,21 +81,21 @@ const Contact = ({ seo }) => {
                             <div className="h-px bg-white w-5 inline-block pr-2 align-middle"></div>{" "}
                             address
                         </div>
-                        <div className="regular">{contactInfo.location}</div>
+                        <div className="regular">{gaddress.value}</div>
                     </div>
                     <div>
                         <div className="opacity-50 lg:mb-5 mb-2 regular">
                             <div className="h-px bg-white w-5 inline-block pr-2 align-middle"></div>{" "}
                             phone
                         </div>
-                        <div className="regular">{contactInfo.location}</div>
+                        <div className="regular">{gphone.value}</div>
                     </div>
                     <div>
                         <div className="opacity-50 lg:mb-5 mb-2 regular">
                             <div className="h-px bg-white w-5 inline-block pr-2 align-middle"></div>{" "}
                             email
                         </div>
-                        <div className="regular">{contactInfo.location}</div>
+                        <div className="regular">{gemail.value}</div>
                     </div>
                     <div>
                         <div className="opacity-50 lg:mb-5 mb-2 regular">
