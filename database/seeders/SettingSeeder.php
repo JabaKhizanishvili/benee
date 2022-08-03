@@ -34,6 +34,12 @@ class SettingSeeder extends Seeder
             [
                 'key' => 'instagram'
             ],
+            [
+                'key' => 'behance'
+            ],
+            [
+                'key' => 'dribbble'
+            ],
         ];
 
         // Insert Settings

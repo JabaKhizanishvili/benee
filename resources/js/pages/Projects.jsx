@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from '@inertiajs/inertia-react'
+import { Link, usePage } from '@inertiajs/inertia-react'
 // import HeroBg from "../assets/images/bg/1.png";
 import { FiArrowRight } from "react-icons/fi";
-import { projectLinks } from "../components/Data";
 import { useRef, useState } from "react";
 import {
     MouseParallaxContainer,
@@ -21,9 +20,31 @@ import Layout from "../Layouts/Layout";
 // import img9 from "../assets/images/projects/3.png";
 import TextSlide from "../components/TextSlide";
 
-const Projects = ({ seo, projects, active }) => {
+const Projects = ({ seo, category, active, indexx, portfolio, searched, images }) => {
+    // console.log(searched, 'esaa');
+    const renderHTML = (rawHTML) =>
+        React.createElement("div", {
+            dangerouslySetInnerHTML: { __html: rawHTML },
+        });
+    const sharedData = usePage().props.localizations;
+    let projectLinks = [
+        {
+            link: route("client.home.index"),
+            name: "All projects",
+        },
+    ];
 
-    const [activeLink, setActiveLink] = useState(0);
+    category.map((e) => {
+        projectLinks.push(
+            {
+                link: '',
+                name: e.name,
+            }
+        )
+    })
+
+    const [activeLink, setActiveLink] = useState(indexx ? indexx : 0);
+
 
     const [transform, setTransform] = useState("translate3d(0, 0, 0)");
     const [transformReverse, setTransformReverse] = useState(
@@ -48,25 +69,25 @@ const Projects = ({ seo, projects, active }) => {
             <>
 
                 <section className="wrapper  pt-40 text-center min-h-screen">
-                    {projectLinks.map((item, index) => {
+                    {projectLinks.map((item, i) => {
                         return (
                             <Link
                                 data-aos="fade-up"
-                                key={index}
-                                href={item.link}
+                                key={i}
+                                href={i != 0 ? route("client.projects.show", [item.name, i]) : route("client.project.index")}
                                 className="fillup mb-2  text-zinc-500 xl:text-6xl lg:text-5xl md:text-4xl text-2xl block w-fit mx-auto uppercase transition "
                                 style={{
-                                    color: activeLink === index ? "#E9776D" : "",
+                                    color: activeLink == i ? "#E9776D" : "",
                                 }}
-                                onClick={() => setActiveLink(index)}
+                                onClick={() => setActiveLink(i)}
                             >
                                 <span
                                     aria-hidden="true"
-                                    className={activeLink === index && "hidden"}
+                                    className={activeLink === i && "hidden"}
                                 >
-                                    {item.text}
+                                    {item.name}
                                 </span>
-                                {item.text}
+                                {item.name}
                             </Link>
                         );
                     })}

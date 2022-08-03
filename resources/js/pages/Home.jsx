@@ -25,7 +25,7 @@ import { Route } from 'react-router-dom';
 const Home = ({ seo, category, active, indexx, portfolio, searched, images }) => {
 
     // console.log(indexx, active, 'esaa');
-    // console.log(searched, 'esaa');
+    console.log(searched, 'esaa');
     // console.log(images);
 
     const renderHTML = (rawHTML) =>
